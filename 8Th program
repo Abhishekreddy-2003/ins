@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<math.h>
+
+int power_mod(int base, int ex ,int mod)
+{
+    int res=1;
+    while(ex>0){
+        if(ex%2==1)
+          res=(res*base)%mod;
+        base=(base*base)%mod;
+        ex/=2;
+    }
+    return res;
+}
+int main()
+{
+    int a,b,p,g,A,B,s_a,s_b;
+    printf("\nenter the prime no:");
+    scanf("%d",&p);
+    
+    printf("\nenter the primitive root :");
+    scanf("%d",&g);
+    
+    a=6;
+    b=15;
+    
+    A=power_mod(g,a,p);
+    B=power_mod(g,b,p);
+    
+    s_a=power_mod(B,a,p);
+    s_b=power_mod(A,b,p);
+    
+    printf("\n a's public key : %d",A);
+    printf("\n b's public key : %d",b);
+    
+    printf("\n a's secret shared is : %d",s_a);
+    printf("\n b's secret shared is : %d",s_b);
+}
